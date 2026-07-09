@@ -1,0 +1,74 @@
+<div class="card mt-2">
+    <div class="card-body">
+        <div class="conatiner">
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-card>
+                        <img [src]="userDetails.profileImage" [alt]="userDetails.profileImage"
+                            title="userDetails.profileImage" mat-card-image>
+
+                        <h6 class="font-weight-bold">{{userDetails.userName}}
+                            <small>({{userDetails.userRole}})</small>
+                        </h6>
+
+                        <p>{{userDetails.profileDescription}}</p>
+                        <mat-card-actions class="d-flex justify-content-between">
+                            <button 
+                            routerLink="edit"
+                            mat-raised-button color="primary">Edit</button>
+                            <button 
+                            (click)="Onremove()"
+                            mat-raised-button color="warn">Remove</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+                <div class="col-md-8">
+                    <mat-card class="mb-4">
+                        <h5 class="font-weight-bold">Basic Information</h5>
+                        <p class="mb-0">userId:{{userDetails.userId}}</p>
+                        <p class="mb-0">experience:{{userDetails.experience}}</p>
+                        <p>
+                            Status: <small class="badge" [ngClass]="{
+                                  'badge-primary':userDetails.isActive,
+                                  'badge-danger':!userDetails.isActive
+                            }">{{userDetails.isActive?'isActive':'In-active'}}</small>
+                        </p>
+
+                    </mat-card>
+
+                    <mat-card class="mb-4">
+                        <h5 class="font-weight-bold">Skills</h5>
+                        <mat-chip-list>
+                            <mat-chip *ngFor="let skill of userDetails.skills">
+                                {{skill}}
+                            </mat-chip>
+                        </mat-chip-list>
+                    </mat-card>
+
+                    <mat-card>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="font-weight-bold">Current Address</h5>
+                                <p>{{userDetails.address.currentAddress.city}}</p>
+                                <p>{{userDetails.address.currentAddress.state}}</p>
+                                <p>{{userDetails.address.currentAddress.country}}</p>
+                                <p>{{userDetails.address.currentAddress.zipCode}}</p>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <h5 class="font-weight-bold">permemnt Address</h5>
+                                <p>{{userDetails.address.permanentAddress.city}}</p>
+                                <p>{{userDetails.address.permanentAddress.state}}</p>
+                                <p>{{userDetails.address.permanentAddress.country}}</p>
+                                <p>{{userDetails.address.permanentAddress.zipCode}}</p>
+
+                            </div>
+                        </div>
+
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
