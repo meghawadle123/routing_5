@@ -1,0 +1,66 @@
+
+<main class="main-auth">
+    <ng-container *ngIf="!alreadyHasAccount">
+        <div class="card">
+    <div class="card-body">
+        <h3>Sign Up</h3>
+        <form [formGroup]="signUpForm" (ngSubmit)="OnsignUp()">
+            <div class="form-group">
+                <label for="email">Email*</label>
+                <input 
+                formControlName="email"
+                type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password*</label>
+                <input 
+                formControlName="password"
+                type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="userRole">UserRole*</label>
+                <select 
+                formControlName="userRole"
+                type="text" class="form-control">
+                   <option value="buyer">Buyer</option>
+                   <option value="admin">Admin</option>
+                   <option value="superAdmin">SuperAdmin</option>
+                </select>
+            </div>
+
+            <button mat-raised-button color="primary">Sign Up</button>
+        </form>
+        <a href="javascript:;" (click)="alreadyHasAccount=true">Already Have Account</a>
+    </div>
+</div>
+</ng-container>
+
+<ng-container *ngIf="alreadyHasAccount">
+    <div class="card">
+        <div class="card-body">
+
+          <h3>Log In</h3>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+             <div class="form-group">
+                <label for="email">Email*</label>
+                <input 
+                formControlName="email"
+                type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password*</label>
+                <input 
+                formControlName="password"
+                type="text" class="form-control">
+            </div>
+
+            <button mat-raised-button color="primary">Log In</button>
+          </form>
+        <a href="javascript:;" (click)="alreadyHasAccount=false">Don't have account</a>
+        </div>
+    </div>
+</ng-container>
+</main>

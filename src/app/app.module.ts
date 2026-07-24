@@ -21,6 +21,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthComponent } from './component/auth/auth.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     PageNotFoundComponent,
     FairsComponent,
     NavbarComponent,
-    GetconfirmComponent
+    GetconfirmComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     MatChipsModule,
     MatSnackBarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

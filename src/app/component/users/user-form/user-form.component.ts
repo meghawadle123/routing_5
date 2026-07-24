@@ -172,4 +172,13 @@ export class UserFormComponent implements OnInit {
 
     });
   }
+
+  canDeactive(){
+    if(this.userForm.dirty&& this.isInEditMode){
+    let getConfirm=confirm(`Are you sure? you want to descard the changes`);
+    return getConfirm;
+    }
+      return true
+
+  }
 }

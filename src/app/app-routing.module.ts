@@ -9,20 +9,32 @@ import { UserFormComponent } from "./component/users/user-form/user-form.compone
 import { UserSingleComponent } from "./component/users/user-single/user-single.component";
 import { FairsComponent } from "./component/fairs/fairs/fairs.component";
 import { PageNotFoundComponent } from "./component/page-not-found/page-not-found/page-not-found.component";
+import { AuthComponent } from "./component/auth/auth.component";
+import { AuthGaurdService } from "./service/auth.gaurd";
+import { UserRoleGaurd } from "./service/userRole.gaurd";
+import { canDeactiveGaurd } from "./service/canDeactive.gaurd";
 
 const routes:Routes=[
     {
     path:'',
-    redirectTo:'home',
-    pathMatch:"full"
+    component:AuthComponent
 },
 {
     path:'home',
-    component:HomeDashboardComponent
+    component:HomeDashboardComponent,
+    canActivate:[AuthGaurdService,UserRoleGaurd],
+    data:{
+            userRole:['admin','buyer','superAdmin']
+    }
+
 },
 {
     path:'product',
     component:ProductDashboardComponent,
+    canActivate:[AuthGaurdService,UserRoleGaurd],
+    data:{
+        userRole:['admin','buyer','superAdmin']
+    },
     children:[
         {
             path:'AddProduct',
@@ -35,7 +47,8 @@ const routes:Routes=[
 
          {
             path:':id/edit',
-            component:ProductFormComponent
+            component:ProductFormComponent,
+            canDeactivate:[canDeactiveGaurd]
         },
         
     ]
@@ -44,6 +57,10 @@ const routes:Routes=[
 {
     path:'user',
     component:UserDashboardComponent,
+    canActivate:[AuthGaurdService,UserRoleGaurd],
+    data:{
+        userRole:['buyer','admin','superAdmin']
+    },
     children:[
         {
             path:'Adduser',
@@ -56,14 +73,19 @@ const routes:Routes=[
 
          {
             path:':userId/edit',
-            component:UserFormComponent
+            component:UserFormComponent,
+            canDeactivate:[canDeactiveGaurd]
         },
         
     ]
 },
 {
     path:'fairs',
-    component:FairsComponent
+    component:FairsComponent,
+    canActivate:[AuthGaurdService,UserRoleGaurd],
+    data:{
+        userRole:['admin','buyer','superAdmin']
+    }
 },
 {
     path:'**',

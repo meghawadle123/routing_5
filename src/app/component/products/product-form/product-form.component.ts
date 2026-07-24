@@ -81,4 +81,12 @@ export class ProductFormComponent implements OnInit {
       }
     })
   }
+
+  canDeactive(){
+    if(this.productForm.dirty&& this.isInEditMode){
+      let getConfirmV=confirm(`Are you sure?you want to descard the changes`);
+      return getConfirmV;
+    }
+    return true;
+  }
 }
