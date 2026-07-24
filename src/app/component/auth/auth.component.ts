@@ -62,6 +62,8 @@ export class AuthComponent implements OnInit {
       let UserDetails=this.loginForm.value;
        this._authService.login(UserDetails).subscribe({
         next:data=>{
+          console.log(data);
+          
           this._snackbar.openSnackbar(data.msg);
           this._authService.SaveToken(data.token);
           this._authService.saveUserRole(data.userRole);

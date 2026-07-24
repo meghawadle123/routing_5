@@ -123,6 +123,7 @@ export class UserFormComponent implements OnInit {
     }
     this._userService.onUpdate(updatedObj).subscribe({
       next: data => {
+        this.isInEditMode=false;
         this._snackbar.openSnackbar(data.msg);
         this._router.navigate(['user'])
       }
